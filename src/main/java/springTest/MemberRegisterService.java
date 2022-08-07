@@ -3,9 +3,11 @@ package springTest;
 import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import dao.MemberDao;
 
+@Component
 public class MemberRegisterService {
 	@Autowired
 	private MemberDao memberDao;

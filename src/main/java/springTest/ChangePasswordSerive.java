@@ -1,9 +1,11 @@
 package springTest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import dao.MemberDao;
 
+@Component
 public class ChangePasswordSerive {
 
 	@Autowired

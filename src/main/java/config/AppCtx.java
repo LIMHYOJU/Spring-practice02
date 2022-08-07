@@ -2,7 +2,11 @@ package config;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.ComponentScan.Filter;
+import org.springframework.context.annotation.ComponentScans;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.FilterType;
 
 import dao.MemberDao;
 import springTest.ChangePasswordSerive;
@@ -13,6 +17,8 @@ import springTest.MemberRegisterService;
 import springTest.MemberSummaryPrinter;
 
 @Configuration
+@ComponentScan(basePackages= {"springTest","dao"},
+excludeFilters = @Filter(type= FilterType.ASSIGNABLE_TYPE,pattern="dao.*Dao"))
 public class AppCtx {
 	
 	@Bean
@@ -27,27 +33,9 @@ public class AppCtx {
 	}
 	
 	@Bean 
+	@Qualifier("summaryPrinter")
 	public MemberSummaryPrinter memberPrinter2() {
 		return new MemberSummaryPrinter();
-	}
-	
-	@Bean
-	public MemberRegisterService memberRegSvc() {
-		return new MemberRegisterService();
-	}
-	
-	@Bean
-	public ChangePasswordSerive changePwdSvc() {
-		return new ChangePasswordSerive();
-	}
-	
-	@Bean
-	public MemberListPrinter listPrinter() {
-		return new MemberListPrinter();
-	}
-	@Bean
-	public MemberInfoPrinter infoPrinter() {
-		return new MemberInfoPrinter();
 	}
 
 }
